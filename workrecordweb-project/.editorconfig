@@ -1,5 +1,9 @@
+root = true
+charset = utf-8
 [*.{js,jsx,ts,tsx,vue}]
+# 使用空格表示缩进
 indent_style = space
+# 每次缩进2个字符
 indent_size = 2
 trim_trailing_whitespace = true
 insert_final_newline = true
