@@ -1,6 +1,7 @@
 <template>
 <div class="login-page-wrapper">
   <div class="login-page-form">
+    <h2 class="login-form-title">欢迎登录</h2>
     <a-form
       id="components-form-demo-normal-login"
       :form="form"
@@ -75,18 +76,22 @@ export default {
 <style lang="less">
 .login-page-wrapper{
   height:100vh;
-  background-image:url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
-  background-position:center 110px;
+  background-image:url("../../assets/img/bg1.jpg");
+  background-position:center;
   background-repeat:no-repeat;
   border:1px solid transparent;
   background-color: #f0f2f5;
+  background-size:100% 100%;
   .login-page-form{
-   width:350px;
+    width:350px;
     margin:0 auto;
-   margin-top:250px;
-    .ant-input{
-      background-color:#fff;
-      border:none;
+    margin-top:250px;
+    background: rgba(124,181,201,0.5);
+    padding: 20px 20px;
+    border-radius:4px;
+    .login-form-title{
+       color: #fff;
+       margin-bottom: 15px;
     }
     .login-form-button{
       width:100%;
