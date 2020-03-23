@@ -50,7 +50,7 @@ export default [
     children: [
       {
         path: '/Page3-1',
-        name: 'Page3-1',
+        name: 'Page3-2-2',
         component: Home,
         meta: {
           keepAlive: true
