@@ -1,8 +1,8 @@
 <template>
 <a-layout>
-  <a-layout-sider>Sider</a-layout-sider>
+  <a-layout-sider><Sider /></a-layout-sider>
   <a-layout>
-    <a-layout-header><Header /></a-layout-header>
+    <a-layout-header><Header :route="route" /></a-layout-header>
     <a-layout-content><router-view /></a-layout-content>
     <a-layout-footer><Footer /></a-layout-footer>
     </a-layout>
@@ -13,9 +13,11 @@
 <script>
 import Header from './header/index.vue'
 import Footer from './footer'
+import Sider from './sider/index.vue'
 export default {
   name: 'Layout',
-  components: { Header, Footer }
+  props: ['route'],
+  components: { Header, Footer, Sider }
 }
 </script>
 
