@@ -33,17 +33,6 @@
       </a-input>
     </a-form-item>
     <a-form-item>
-      <!-- <a-checkbox
-        v-decorator="[
-          'remember',
-          {
-            valuePropName: 'checked',
-            initialValue: true,
-          },
-        ]"
-      >
-        记住我
-      </a-checkbox> -->
       <a-button
         type="primary"
         html-type="submit"
@@ -52,12 +41,34 @@
         >登录</a-button>
     </a-form-item>
   </a-form>
-    </div>
+  </div>
 </div>
+
 </template>
 
 <script>
 export default {
+  // beforeCreate () {
+  //    this.form = this.$form.createForm(this, { name: 'normal_login' });
+  //   console.log('beforeCreate', this.$el)
+  //   console.log('beforeCreate', this.$data)
+  //   console.log('beforeCreate', this.message)
+  // },
+  // created () {
+  //   console.log('created', this.$el)
+  //   console.log('created', this.$data)
+  //   console.log('created', this.message)
+  // },
+  // beforeMount () {
+  //   console.log('beforeMount', this.$el);
+  //   console.log('beforeMount', this.$data)
+  //   console.log('beforeMount', this.message)
+  // },
+  // mounted () {
+  //   console.log('mounted', this.$el)
+  //   console.log('mounted', this.$data)
+  //   console.log('mounted', this.message)
+  // },
   beforeCreate () {
     this.form = this.$form.createForm(this, { name: 'normal_login' });
   },
@@ -67,6 +78,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          this.$router.push({ path: '/Home' })
         }
       });
     }

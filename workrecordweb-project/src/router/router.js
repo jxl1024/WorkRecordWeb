@@ -4,12 +4,18 @@ export default [
   {
     path: '/',
     name: 'logn',
-    component: () => import('../views/login/login.vue')
+    component: () => import('../views/login/login.vue'),
+    meta: {
+      keepAlive: false
+    }
   },
   {
     path: '/Home',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/about',

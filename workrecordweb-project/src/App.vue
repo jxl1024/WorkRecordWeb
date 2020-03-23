@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <!-- <a-button>按钮</a-button> -->
-    <!-- <div id="nav">
-
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <router-view/>
+   <Layout v-if="$route.meta.keepAlive" />
+    <!-- 登录页面 -->
+    <router-view v-else ></router-view>
   </div>
 </template>
-
+<script>
+import Layout from './components/layout'
+export default {
+  components: { Layout }
+}
+</script>
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -17,6 +18,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+min-height:100%;
+  background:rgb(240,242,245)
+
 }
 
 #nav {
