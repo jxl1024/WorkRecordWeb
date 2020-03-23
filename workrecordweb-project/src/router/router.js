@@ -8,9 +8,7 @@ export default [
     component: () => import('../views/login/login.vue'),
     meta: {
       keepAlive: false
-    },
-    children: []
-
+    }
   },
   {
     path: '/Home',
@@ -19,8 +17,7 @@ export default [
     component: Home,
     meta: {
       keepAlive: true
-    },
-    children: []
+    }
 
   },
   {
@@ -30,8 +27,7 @@ export default [
     component: Home,
     meta: {
       keepAlive: true
-    },
-    children: []
+    }
 
   },
   {
@@ -41,8 +37,7 @@ export default [
     component: Home,
     meta: {
       keepAlive: true
-    },
-    children: []
+    }
   },
   {
     path: '/Page3',
@@ -70,10 +65,10 @@ export default [
         }
       }
     ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  // }
 ]
