@@ -1,6 +1,6 @@
 <template>
 <a-layout>
-  <a-layout-sider><Sider /></a-layout-sider>
+  <a-layout-sider :trigger="null"><Sider /></a-layout-sider>
   <a-layout>
     <a-layout-header><Header :route="route" /></a-layout-header>
     <a-layout-content><router-view /></a-layout-content>

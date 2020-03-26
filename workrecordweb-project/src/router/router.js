@@ -23,7 +23,7 @@ export default [
   {
     path: '/Page1',
     name: 'Page1',
-    type: 'pie-chart',
+    type: 'smile',
     component: Home,
     meta: {
       keepAlive: true
@@ -33,7 +33,7 @@ export default [
   {
     path: '/Page2',
     name: 'Page2',
-    type: 'pie-chart',
+    type: 'facebook',
     component: Home,
     meta: {
       keepAlive: true
@@ -42,7 +42,7 @@ export default [
   {
     path: '/Page3',
     name: 'Page3',
-    type: 'pie-chart',
+    type: 'twitter',
     component: Home,
     meta: {
       keepAlive: true

@@ -26,7 +26,9 @@ export default {
   min-height:100%;
   background:rgb(240,242,245)
 }
-
+ul,li{
+  padding-left:0px !important;
+}
 #nav {
   padding: 30px;
 

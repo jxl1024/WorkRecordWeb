@@ -1,4 +1,12 @@
 <template>
+<div>
+   <!-- logo -->
+   <div class="side-title">
+      <span class="logo-icon">
+        <a-icon theme="twoTone" type="edit"></a-icon>
+      </span>
+      Work record
+    </div>
     <a-menu
       :defaultSelectedKeys="['/Home']"
       mode="inline"
@@ -8,22 +16,29 @@
   <template v-for="item in router">
     <template v-if="item.meta.keepAlive">
         <a-menu-item v-if="!item.children"  :key="item.path">
+              <router-link :to="item.path" class="clear-a-style">
                   <a-icon :type="item.type" />
-                  <span><router-link :to="item.path" class="clear-a-style">{{item.name}}</router-link></span>
+                  <span>{{item.name}}</span>
+              </router-link>
             </a-menu-item>
             <a-sub-menu  v-else :key="item.path">
-                <span slot="title"><a-icon :type="item.type" />
-                  <span><router-link :to="item.path" class="clear-a-style">{{item.name}}</router-link></span>
+                <span slot="title">
+                    <a-icon :type="item.type" />
+                    <router-link :to="item.path" class="clear-a-style"><span>{{item.name}}</span></router-link>
+                      <!-- <router-link :to="item.path" class="clear-a-style"></router-link> -->
                 </span>
               <template v-for="i in item.children">
                 <a-menu-item  :key="i.path">
-                <span><router-link :to="i.path" class="clear-a-style">{{item.name}}</router-link></span>
+                  <router-link :to="i.path" class="clear-a-style">
+                    <span>{{item.name}}</span>
+                  </router-link>
                 </a-menu-item>
               </template>
           </a-sub-menu>
     </template>
   </template>
     </a-menu>
+  </div>
 </template>
 
 <script>
@@ -34,7 +49,14 @@ export default {
   // components: { SidebarItem },
   data () {
     return {
-      router: router
+      router: router,
+      collapsed: true
+    }
+  },
+  methods: {
+    toggleCollapsed () {
+      this.collapsed = !this.collapsed;
+      console.log(this.collapsed)
     }
   }
 }
@@ -44,5 +66,16 @@ export default {
 .clear-a-style{
     color:#fff !important;
     text-decoration:none !important;
+}
+ul,li{
+  padding-left:0px !important;
+}
+.side-title{
+      font-size: 24px;
+    color: #fff;
+    padding: 10px;
+}
+.logo-icon{
+  margin-right:10px;
 }
 </style>
