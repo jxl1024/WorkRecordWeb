@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pub-side-bar">
    <!-- logo -->
    <div class="pub-aside-title">
       <span class="logo-icon">
@@ -7,11 +7,13 @@
       </span>
       Work record
     </div>
-    <a-menu
+
+  <div class="menu">
+ <a-menu
       :defaultSelectedKeys="['/Home']"
       mode="inline"
       theme="dark"
-      :inlineCollapsed="collapsed"
+      v-bind:inlineCollapsed="collapsed"
     >
   <template v-for="item in router">
     <template v-if="item.meta.keepAlive">
@@ -38,6 +40,8 @@
     </template>
   </template>
     </a-menu>
+  </div>
+
   </div>
 </template>
 
@@ -66,6 +70,9 @@ export default {
 .clear-a-style{
     color:#fff !important;
     text-decoration:none !important;
+}
+.pub-side-bar{
+  // width:100px;
 }
 ul,li{
   padding-left:0px !important;

@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import Layout from './components/layout'
+import Layout from './components/layout1'
 export default {
   components: { Layout },
   data () {
@@ -23,7 +23,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-height:100%;
+  min-height:100vh;
   background:rgb(240,242,245)
 }
 ul,li{
