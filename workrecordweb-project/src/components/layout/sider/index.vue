@@ -1,7 +1,7 @@
 <template>
 <div>
    <!-- logo -->
-   <div class="side-title">
+   <div class="pub-aside-title">
       <span class="logo-icon">
         <a-icon theme="twoTone" type="edit"></a-icon>
       </span>
@@ -70,9 +70,9 @@ export default {
 ul,li{
   padding-left:0px !important;
 }
-.side-title{
+.pub-aside-title{
       font-size: 24px;
-    color: #fff;
+     color: #fff;
     padding: 10px;
 }
 .logo-icon{

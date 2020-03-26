@@ -1,7 +1,7 @@
 <template>
  <div class="layout-header">
    <a-row type="flex" justify="space-between">
-     <a-col >{{route}}</a-col>
+     <a-col class="page-title">{{route}}</a-col>
      <a-col >
       <a-dropdown>
       <a class="ant-dropdown-link" @click="e => e.preventDefault()"><span class="user">admin</span><a-avatar style="backgroundColor:#87d068" icon="user"/></a>
@@ -29,5 +29,8 @@ export default {
   }
   .user{
     margin-right:10px;
+  }
+  .page-title{
+    color:#000
   }
 </style>
