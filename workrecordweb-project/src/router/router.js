@@ -1,5 +1,5 @@
 import Home from '../views/Home.vue'
-
+import User from '../views/user/index.vue'
 export default [
   {
     path: '/',
@@ -21,10 +21,10 @@ export default [
 
   },
   {
-    path: '/Page1',
-    name: 'Page1',
-    type: 'smile',
-    component: Home,
+    path: '/user',
+    name: '用户',
+    type: 'team',
+    component: User,
     meta: {
       keepAlive: true
     }

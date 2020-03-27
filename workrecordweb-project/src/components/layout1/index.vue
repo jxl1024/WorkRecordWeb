@@ -29,7 +29,6 @@
                 <span>{{item.name}}</span>
                </router-link>
               </span>
-
             <template v-for="i in item.children">
               <a-menu-item  :key="i.path">
                 <router-link :to="i.path" class="clear-a-style">
@@ -52,7 +51,7 @@
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="()=> collapsed = !collapsed"
         /></a-col>
-     <a-col class="page-title">{{route}}</a-col>
+     <!-- <a-col class="page-title">{{route}}</a-col> -->
      <a-col >
     <a-dropdown :style="{paddingRight:'30px'}">
       <a class="ant-dropdown-link" @click="e => e.preventDefault()"><span class="user">admin</span><a-avatar style="backgroundColor:#87d068" icon="user"/></a>
@@ -67,7 +66,7 @@
   </div>
       </a-layout-header>
       <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+        :style="{ margin: '10px 16px', padding: '24px'}"
       >
         <router-view />
       </a-layout-content>
