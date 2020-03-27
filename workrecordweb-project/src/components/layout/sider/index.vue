@@ -1,5 +1,5 @@
 <template>
-<a-layout-sider :trigger="null" collapsible v-model="collapsed">
+<a-layout-sider :trigger="null"  collapsible v-model="collapsed">
        <div class="pub-aside-title">
       <span class="logo-icon">
         <a-icon theme="twoTone" type="edit"></a-icon>

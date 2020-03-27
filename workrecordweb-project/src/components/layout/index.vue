@@ -12,7 +12,7 @@
       <!-- 公共头部 -->
       <Header
         :collapsed="collapsed"
-        v-on:toogle-collapsed="collapsed=!collapsed"
+        @toogle-collapsed="collapsed=!collapsed"
       />
     </a-layout-header>
       <a-layout-content

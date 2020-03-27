@@ -8,13 +8,19 @@
           />
         <a-button type="primary">查询</a-button>
       </div>
-      <a-button type="default">添加用户</a-button>
+      <a-button type="default" @click="toogleAddModal">添加用户</a-button>
     </div>
     <a-table class="user-list" :columns="columns" :dataSource="data"></a-table>
+    <!--添加用户弹框 -->
+    <AddUser
+      :visible="visible"
+      @handleOk="handleAddUser"
+     />
   </div>
 </template>
 
 <script>
+import AddUser from './components/addUser'
 const columns = [
   {
     title: 'name',
@@ -53,8 +59,23 @@ export default {
   data () {
     return {
       data,
-      columns
+      columns,
+      visible: false
     }
+  },
+  components: {
+    AddUser
+  },
+  methods: {
+    toogleAddModal () {
+      this.visible = !this.visible
+    },
+    handleAddUser (msg) {
+      console.log(msg);
+      this.toogleAddModal()
+    }
+  },
+  computed: {
   }
 }
 </script>
