@@ -7,7 +7,7 @@
       {{!collapsed?'Work record':""}}
     </div>
     <a-menu
-      :defaultSelectedKeys="route"
+      :defaultSelectedKeys="[`${route}`]"
       mode="inline"
       theme="dark"
       v-bind:inlineCollapsed="collapsed"
