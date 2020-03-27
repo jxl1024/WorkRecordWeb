@@ -1,9 +1,13 @@
 <template>
- <div class="layout-header">
+  <div class="layout-header">
    <a-row type="flex" justify="space-between">
-     <a-col class="page-title">{{route}}</a-col>
+     <a-col><a-icon
+          class="trigger"
+          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="$emit('toogle-collapsed')"
+        /></a-col>
      <a-col >
-      <a-dropdown>
+    <a-dropdown :style="{paddingRight:'30px'}">
       <a class="ant-dropdown-link" @click="e => e.preventDefault()"><span class="user">admin</span><a-avatar style="backgroundColor:#87d068" icon="user"/></a>
       <a-menu slot="overlay">
       <a-menu-item>
@@ -18,7 +22,7 @@
 
 <script>
 export default {
-  props: ['route']
+  props: ['collapsed']
 }
 
 </script>

@@ -1,16 +1,13 @@
 <template>
-<div class="pub-side-bar">
-   <!-- logo -->
-   <div class="pub-aside-title">
+<a-layout-sider :trigger="null" collapsible v-model="collapsed">
+       <div class="pub-aside-title">
       <span class="logo-icon">
         <a-icon theme="twoTone" type="edit"></a-icon>
       </span>
-      Work record
+      {{!collapsed?'Work record':""}}
     </div>
-
-  <div class="menu">
- <a-menu
-      :defaultSelectedKeys="['/Home']"
+    <a-menu
+      :defaultSelectedKeys="route"
       mode="inline"
       theme="dark"
       v-bind:inlineCollapsed="collapsed"
@@ -22,58 +19,67 @@
                   <a-icon :type="item.type" />
                   <span>{{item.name}}</span>
               </router-link>
-            </a-menu-item>
-            <a-sub-menu  v-else :key="item.path">
-                <span slot="title">
-                    <a-icon :type="item.type" />
-                    <router-link :to="item.path" class="clear-a-style"><span>{{item.name}}</span></router-link>
-                      <!-- <router-link :to="item.path" class="clear-a-style"></router-link> -->
-                </span>
-              <template v-for="i in item.children">
-                <a-menu-item  :key="i.path">
-                  <router-link :to="i.path" class="clear-a-style">
-                    <span>{{item.name}}</span>
-                  </router-link>
-                </a-menu-item>
-              </template>
-          </a-sub-menu>
+          </a-menu-item>
+          <a-sub-menu  v-else :key="item.path">
+              <span slot="title">
+              <router-link :to="item.path" class="clear-a-style">
+                <a-icon :type="item.type" />
+                <span>{{item.name}}</span>
+               </router-link>
+              </span>
+            <template v-for="i in item.children">
+              <a-menu-item  :key="i.path">
+                <router-link :to="i.path" class="clear-a-style">
+                  <span>{{item.name}}</span>
+                </router-link>
+              </a-menu-item>
+            </template>
+        </a-sub-menu>
     </template>
   </template>
     </a-menu>
-  </div>
-
-  </div>
+    </a-layout-sider>
 </template>
 
 <script>
-import router from '../../../router/router';
-// import SidebarItem from './siderbar.vue'
 export default {
   name: 'Sider',
+  props: ['collapsed', 'router', 'route']
   // components: { SidebarItem },
-  data () {
-    return {
-      router: router,
-      collapsed: true
-    }
-  },
-  methods: {
-    toggleCollapsed () {
-      this.collapsed = !this.collapsed;
-      console.log(this.collapsed)
-    }
-  }
+  // data () {
+  // },
+  // methods: {
+  // }
 }
 </script>
 
 <style lang="less">
+ #components-layout-demo-custom-trigger .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  #components-layout-demo-custom-trigger .trigger:hover {
+    color: #1890ff;
+  }
+
+  #components-layout-demo-custom-trigger .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
+.ant-layout{
+    min-height:100vh;
+    }
+/* logo */
 .clear-a-style{
     color:#fff !important;
     text-decoration:none !important;
 }
-.pub-side-bar{
-  // width:100px;
-}
+
 ul,li{
   padding-left:0px !important;
 }

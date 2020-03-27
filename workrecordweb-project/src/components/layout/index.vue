@@ -1,27 +1,59 @@
 <template>
-<a-layout id="components-layout-demo-custom-trigger">
-  <a-layout-sider :trigger="null"><Sider /></a-layout-sider>
-  <a-layout>
-    <a-layout-header><Header :route="route" /></a-layout-header>
-    <a-layout-content><router-view /></a-layout-content>
-    <a-layout-footer><Footer /></a-layout-footer>
+  <!-- <div class="home">content</div> -->
+    <a-layout id="components-layout-demo-custom-trigger">
+     <!-- 侧边栏 -->
+     <Sider
+     :router="router"
+     :collapsed="collapsed"
+     :route="route"
+      />
+    <a-layout>
+    <a-layout-header style="background: #fff; padding: 0">
+      <!-- 公共头部 -->
+      <Header
+        :collapsed="collapsed"
+        v-on:toogle-collapsed="collapsed=!collapsed"
+      />
+    </a-layout-header>
+      <a-layout-content
+        :style="{ margin: '10px 16px', padding: '24px'}"
+      >
+      <!-- 页面 -->
+        <router-view />
+      </a-layout-content>
+      <!-- 公共footer -->
+        <a-layout-footer><Footer /></a-layout-footer>
     </a-layout>
-</a-layout>
-
+  </a-layout>
 </template>
 
 <script>
-import Header from './header/index.vue'
-import Footer from './footer'
-import Sider from './sider/index.vue'
+import router from '../../router/router'
+import Sider from './sider/index'
+import Footer from './footer/index'
+import Header from './header/index'
 export default {
-  name: 'Layout',
+  name: 'Home',
   props: ['route'],
-  components: { Header, Footer, Sider }
+  components: {
+    Sider,
+    Footer,
+    Header
+  },
+  data () {
+    return {
+      collapsed: false,
+      router: router
+    };
+  },
+  methods: {
+    toggleCollapsed () {
+      this.collapsed = !this.collapsed;
+    }
+  }
 }
 </script>
-
-<style lang="less">
+<style scoped>
   #components-layout-demo-custom-trigger .trigger {
     font-size: 18px;
     line-height: 64px;
@@ -39,10 +71,33 @@ export default {
     background: rgba(255, 255, 255, 0.2);
     margin: 16px;
   }
-.ant-layout-header{
-  background:#fff !important;
+.ant-layout{
+    min-height:100vh;
+    }
+/* logo */
+.clear-a-style{
+    color:#fff !important;
+    text-decoration:none !important;
 }
-.ant-layout-has-sider{
-min-height:100vh !important;
+
+ul,li{
+  padding-left:0px !important;
 }
+.pub-aside-title{
+      font-size: 24px;
+     color: #fff;
+    padding: 10px;
+}
+.logo-icon{
+  margin-right:10px;
+}
+  .layout-header{
+    text-align:left;
+  }
+  .user{
+    margin-right:10px;
+  }
+  .page-title{
+    color:#000
+  }
 </style>

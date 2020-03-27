@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-   <Layout v-if="$route.meta.keepAlive" :route="$route.name"/>
+   <Layout v-if="$route.meta.keepAlive" :route="$route.path"/>
     <!-- 登录页面 -->
     <router-view v-else ></router-view>
   </div>
 </template>
 <script>
-import Layout from './components/layout1'
+import Layout from './components/layout'
 export default {
   components: { Layout },
   data () {
