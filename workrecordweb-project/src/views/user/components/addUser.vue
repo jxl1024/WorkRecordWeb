@@ -2,8 +2,13 @@
  <div>
   <a-modal
     title="添加用户"
-    v-model="visible"
-    @ok="handleOk">
+    :visible="visible"
+    :centered="true"
+    :maskClosable="false"
+    :closeable="false"
+    @ok="handleOk"
+    @cancel="handleOk"
+    >
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
