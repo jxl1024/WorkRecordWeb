@@ -20,7 +20,7 @@ const actions = {
     const url = 'https://api.rn-solutions.com/api/powerstation/baseinformation?number=A06'
     axios.get(url).then((res) => {
       commit('getData', res);
-      commit('load',false)
+      commit('load', false)
     })
   }
 }
