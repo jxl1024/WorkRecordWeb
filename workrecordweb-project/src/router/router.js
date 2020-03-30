@@ -31,10 +31,10 @@ export default [
 
   },
   {
-    path: '/Page2',
-    name: 'Page2',
+    path: '/department',
+    name: '部门',
     type: 'facebook',
-    component: Home,
+    component: () => import('../views/department'),
     meta: {
       keepAlive: true
     }
