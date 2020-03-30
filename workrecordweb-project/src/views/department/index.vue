@@ -1,4 +1,8 @@
 <template>
+<a-spin
+  size="large"
+  :spinning="loading"
+>
 <div class="page-department">
     <div class="public-page-title">部门管理</div>
     <div class="public-search-add">
@@ -10,15 +14,18 @@
       </div>
       <a-button type="default" @click="toogleAddModal">添加部门</a-button>
     </div>
+    <p>{{testData}}</p>
     <a-table
     :columns="columns"
     :dataSource="data"
     >
     </a-table>
 </div>
+</a-spin>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 const columns = [
   {
     title: 'name',
@@ -60,10 +67,21 @@ export default {
       data,
       columns
     }
+  },
+  mounted () {
+    this.loading = true;
+    //  触发action
+    this.$store.dispatch('department/testData')
+  },
+  computed: {
+    ...mapState({
+      testData: state => state.department.testData,
+      loading: state => state.department.loading
+    })
   }
+
 }
 </script>
 
 <style lang="less">
-
 </style>
