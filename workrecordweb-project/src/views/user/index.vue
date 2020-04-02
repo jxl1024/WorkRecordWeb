@@ -21,30 +21,70 @@
 
 <script>
 import AddUser from './components/addUser'
+// const data = [{
+//   "userID": "string",
+//   "account": "string",
+//   "password": "string",
+//   "userName": "string",
+//   "roleID": "string",
+//   "departmentID": "string",
+//   "isDel": true,
+//   "createdUserId": "string",
+//   "createdTime": "2020-04-02T02:26:33.742Z",
+//   "updatedUserId": "string",
+//   "updatedTime": "2020-04-02T02:26:33.742Z"
+// }]
+
 const columns = [
   {
-    title: 'name',
-    dataIndex: 'name',
-    width: '25%',
-    scopedSlots: { customRender: 'name' }
+    title: 'userID',
+    dataIndex: 'userID'
   },
   {
-    title: 'age',
-    dataIndex: 'age',
-    width: '15%',
-    scopedSlots: { customRender: 'age' }
+    title: '用户账号',
+    dataIndex: 'account'
   },
   {
-    title: 'address',
-    dataIndex: 'address',
-    width: '40%',
-    scopedSlots: { customRender: 'address' }
+    title: '用户密码',
+    dataIndex: 'password'
   },
   {
-    title: 'operation',
-    dataIndex: 'operation',
-    scopedSlots: { customRender: 'operation' }
-  }
+    title: '用户名',
+    dataIndex: 'userName'
+  },
+  {
+    title: '用户角色',
+    dataIndex: 'roleID'
+  },
+  {
+    title: '部门ID',
+    dataIndex: 'departmentID'
+  },
+  {
+    title: 'isDel',
+    dataIndex: 'isDel'
+  },
+  {
+    title: 'createdUserId',
+    dataIndex: 'createdUserId'
+  },
+  {
+    title: 'createdTime',
+    dataIndex: 'createdTime'
+  },
+  {
+    title: 'updatedUserId',
+    dataIndex: 'updatedUserId'
+  },
+  {
+    title: 'updatedTime',
+    dataIndex: 'updatedTime'
+  },
+  // {
+  //   title: 'operation',
+  //   dataIndex: 'operation',
+  //   scopedSlots: { customRender: 'operation' }
+  // }
 ]
 const data = [];
 for (let i = 0; i < 100; i++) {
