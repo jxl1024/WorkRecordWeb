@@ -1,4 +1,6 @@
-import axios from 'axios'
+// import axios from 'axios'
+import { UserApi } from './../until/api';
+import { GET } from './../until/axios/request';
 const state = {
   testData: [],
   loading: false
@@ -12,15 +14,24 @@ const mutations = {
   }
 }
 const actions = {
-  // getLoad: ({ commit },{ amount }) => {
-  //   commit('load')
-  // },
-  testData: ({ commit }) => {
-    commit('load', true)
-    const url = 'https://api.rn-solutions.com/api/powerstation/baseinformation?number=A06'
-    axios.get(url).then((res) => {
-      commit('getData', res);
-      commit('load', false)
+  getLoad: ({ commit }, f) => {
+    console.log('121')
+    commit('load', f)
+  },
+  testData: ({ dispatch, commit }) => {
+    dispatch('getLoad', true)
+    const url = UserApi.list
+    // axios.get(url).then((res) => {
+    //   commit('getData', res);
+    // }).then((res) => {
+    //   dispatch('getLoad', false)
+    // })
+    const params = {
+      pageIndex: 1,
+      pageSize: 10
+    }
+    GET(url, params).then(res => {
+      console.log(res)
     })
   }
 }

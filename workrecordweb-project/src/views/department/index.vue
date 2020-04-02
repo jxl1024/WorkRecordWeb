@@ -12,7 +12,7 @@
           />
         <a-button type="primary">查询</a-button>
       </div>
-      <a-button type="default" @click="toogleAddModal">添加部门</a-button>
+      <a-button type="default" >添加部门</a-button>
     </div>
     <p>{{testData}}</p>
     <a-table
