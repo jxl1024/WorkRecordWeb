@@ -100,7 +100,7 @@ function Request (config) {
   }
   return new Promise((resolve, reject) => {
     axios.request(defaultConfig).then((response) => {
-      console.log(response)
+      resolve(response)
     })
   })
 }

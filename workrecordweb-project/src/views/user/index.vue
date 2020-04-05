@@ -10,7 +10,18 @@
       </div>
       <a-button type="default" @click="toogleAddModal">添加用户</a-button>
     </div>
-    <a-table class="user-list" :columns="columns" :dataSource="data"></a-table>
+    <a-table
+    class="user-list"
+    :columns="columns"
+    :dataSource="userlist"
+    rowKey="userID"
+    >
+    <div class="user-item" slot="userItem">
+      <a><a-icon type="form"></a-icon>修改</a>
+      <a><a-icon type="slack"></a-icon>删除</a>
+    </div>
+    </a-table>
+
     <!--添加用户弹框 -->
     <AddUser
       :visible="visible"
@@ -18,93 +29,90 @@
      />
   </div>
 </template>
-
 <script>
 import AddUser from './components/addUser'
-// const data = [{
-//   "userID": "string",
-//   "account": "string",
-//   "password": "string",
-//   "userName": "string",
-//   "roleID": "string",
-//   "departmentID": "string",
-//   "isDel": true,
-//   "createdUserId": "string",
-//   "createdTime": "2020-04-02T02:26:33.742Z",
-//   "updatedUserId": "string",
-//   "updatedTime": "2020-04-02T02:26:33.742Z"
-// }]
-
+import { mapState } from 'vuex'
+// import moment from 'moment'
 const columns = [
   {
     title: 'userID',
-    dataIndex: 'userID'
+    dataIndex: 'userID',
+    width: '10%',
+    ellipsis: true
   },
   {
     title: '用户账号',
-    dataIndex: 'account'
-  },
-  {
-    title: '用户密码',
-    dataIndex: 'password'
+    dataIndex: 'account',
+    width: '15%'
   },
   {
     title: '用户名',
-    dataIndex: 'userName'
+    dataIndex: 'userName',
+    width: '10%'
   },
   {
     title: '用户角色',
-    dataIndex: 'roleID'
+    dataIndex: 'roleID',
+    width: '10%'
   },
   {
     title: '部门ID',
-    dataIndex: 'departmentID'
+    dataIndex: 'departmentID',
+    width: '10%'
   },
   {
-    title: 'isDel',
-    dataIndex: 'isDel'
+    title: '创建时间',
+    dataIndex: 'createdTime',
+    width: '10%'
+
   },
   {
-    title: 'createdUserId',
-    dataIndex: 'createdUserId'
+    title: '用户密码',
+    dataIndex: 'password',
+    width: '15%',
+    ellipsis: true
   },
   {
-    title: 'createdTime',
-    dataIndex: 'createdTime'
-  },
-  {
-    title: 'updatedUserId',
-    dataIndex: 'updatedUserId'
-  },
-  {
-    title: 'updatedTime',
-    dataIndex: 'updatedTime'
-  },
+    title: '操作',
+    dataIndex: 'operation',
+    scopedSlots: { customRender: 'userItem' },
+    width: '15%'
+  }
   // {
-  //   title: 'operation',
-  //   dataIndex: 'operation',
-  //   scopedSlots: { customRender: 'operation' }
+  //   title: 'isDel',
+  //   dataIndex: 'isDel'
+  // },
+  // {
+  //   title: 'createdUserId',
+  //   dataIndex: 'createdUserId'
+  // },
+  // {
+  //   title: 'updatedUserId',
+  //   dataIndex: 'updatedUserId'
+  // },
+  // {
+  //   title: 'updatedTime',
+  //   dataIndex: 'updatedTime'
   // }
 ]
-const data = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i.toString(),
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`
-  })
-}
 export default {
   data () {
     return {
-      data,
+      // data,
       columns,
-      visible: false
+      visible: false,
+      pagenation: {
+        pageIndex: 1,
+        pageSize: 10
+      }
     }
   },
   components: {
     AddUser
+  },
+  mounted () {
+  // 获取列表数据
+    this.$store.dispatch('user/getUserList', this.pagenation)
   },
   methods: {
     toogleAddModal () {
@@ -116,10 +124,17 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      userlist: state => state.user.userlist
+    })
   }
 }
 </script>
 
 <style lang="less">
-
+.user-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 </style>

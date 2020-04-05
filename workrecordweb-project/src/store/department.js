@@ -15,11 +15,10 @@ const mutations = {
 }
 const actions = {
   getLoad: ({ commit }, f) => {
-    console.log('121')
     commit('load', f)
   },
   testData: ({ dispatch, commit }) => {
-    dispatch('getLoad', true)
+    // dispatch('getLoad', true)
     const url = UserApi.list
     // axios.get(url).then((res) => {
     //   commit('getData', res);
