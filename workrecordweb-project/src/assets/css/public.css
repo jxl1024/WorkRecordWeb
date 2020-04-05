@@ -1,0 +1,28 @@
+.ant-table-body {
+	background: #fff;
+}
+
+.ant-pagination {
+	margin-right: 10px;
+}
+
+.public-page-title {
+	text-align: left;
+	border-left: 5px solid #1890ff;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.public-search-add {
+	margin: 20px 0px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.public-search {
+		display: flex;
+}
+
+.ant-input {
+	margin-right: 15px;
+}

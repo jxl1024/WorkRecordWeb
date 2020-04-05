@@ -1,8 +1,8 @@
 <template>
   <div class="page-user">
-    <div class="user-title">用户管理</div>
-    <div class="add-user">
-      <div class="user-search">
+    <div class="public-page-title">用户管理</div>
+    <div class="public-search-add">
+      <div class="public-search">
         <a-input
          placeholder="请输入用户名"
           />
@@ -21,30 +21,70 @@
 
 <script>
 import AddUser from './components/addUser'
+// const data = [{
+//   "userID": "string",
+//   "account": "string",
+//   "password": "string",
+//   "userName": "string",
+//   "roleID": "string",
+//   "departmentID": "string",
+//   "isDel": true,
+//   "createdUserId": "string",
+//   "createdTime": "2020-04-02T02:26:33.742Z",
+//   "updatedUserId": "string",
+//   "updatedTime": "2020-04-02T02:26:33.742Z"
+// }]
+
 const columns = [
   {
-    title: 'name',
-    dataIndex: 'name',
-    width: '25%',
-    scopedSlots: { customRender: 'name' }
+    title: 'userID',
+    dataIndex: 'userID'
   },
   {
-    title: 'age',
-    dataIndex: 'age',
-    width: '15%',
-    scopedSlots: { customRender: 'age' }
+    title: '用户账号',
+    dataIndex: 'account'
   },
   {
-    title: 'address',
-    dataIndex: 'address',
-    width: '40%',
-    scopedSlots: { customRender: 'address' }
+    title: '用户密码',
+    dataIndex: 'password'
   },
   {
-    title: 'operation',
-    dataIndex: 'operation',
-    scopedSlots: { customRender: 'operation' }
-  }
+    title: '用户名',
+    dataIndex: 'userName'
+  },
+  {
+    title: '用户角色',
+    dataIndex: 'roleID'
+  },
+  {
+    title: '部门ID',
+    dataIndex: 'departmentID'
+  },
+  {
+    title: 'isDel',
+    dataIndex: 'isDel'
+  },
+  {
+    title: 'createdUserId',
+    dataIndex: 'createdUserId'
+  },
+  {
+    title: 'createdTime',
+    dataIndex: 'createdTime'
+  },
+  {
+    title: 'updatedUserId',
+    dataIndex: 'updatedUserId'
+  },
+  {
+    title: 'updatedTime',
+    dataIndex: 'updatedTime'
+  },
+  // {
+  //   title: 'operation',
+  //   dataIndex: 'operation',
+  //   scopedSlots: { customRender: 'operation' }
+  // }
 ]
 const data = [];
 for (let i = 0; i < 100; i++) {
@@ -81,27 +121,5 @@ export default {
 </script>
 
 <style lang="less">
-.ant-table-body{
-  background:#fff;
-}
-.ant-pagination{
-  margin-right:10px;
-}
-.user-title{
-    text-align: left;
-    border-left: 5px solid #1890ff;
-    padding-left: 10px;
-    font-size: 14px;
-}
-.add-user{
-  margin:20px 0px;
-  display:flex;
-  justify-content:space-between;
-  .user-search{
-    display:flex;
-    .ant-input{
-      margin-right:15px;
-    }
-  }
-}
+
 </style>

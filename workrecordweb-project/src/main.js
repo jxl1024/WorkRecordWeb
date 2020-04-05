@@ -6,6 +6,7 @@ import store from './store'
 import Antd from 'ant-design-vue'
 // 引入样式
 import 'ant-design-vue/dist/antd.less'
+import './assets/css/public.css'
 
 Vue.config.productionTip = false
 
