@@ -22,7 +22,7 @@
           <template slot="action" slot-scope="text, record">
               <div class="user-item" slot="userItem">
                     <a @click="onEdit(record)" ><a-icon type="form"></a-icon>修改</a>
-                    <a @click="onEdit(record, true)"><a-icon type="slack"></a-icon>删除</a>
+                    <a @click="onDelete(record)"><a-icon type="slack"></a-icon>删除</a>
                 </div>
           </template>
         </a-table>
@@ -123,18 +123,17 @@ export default {
     })
   },
   methods: {
-    toogleAddModal () {
-      this.visible = !this.visible
+    toogleAddModal (record) {
+      this.visible = !this.visible;
+      if (record) { this.$store.commit('user/setRecord', record) }
     },
-    handleAddUser (msg) {
-      // console.log(msg);
+    handleAddUser (params) {
       this.toogleAddModal()
     },
-    onEdit (record, f) {
-      // if(f){
-      // }else{
-      // }
+    onEdit (record) {
       this.toogleAddModal(record)
+    },
+    onDelete (record) {
     }
   },
   computed: {

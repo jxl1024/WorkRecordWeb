@@ -9,10 +9,10 @@ const state = {
     pageSize: 10
   },
   load: false,
-  // recode: null,
-  recode: {
-    userID: 'TEST'
-  }
+  recode: null
+  // recode: {
+  //   userID: 'TEST'
+  // }
 }
 const mutations = {
   getData (state, { payload }) {

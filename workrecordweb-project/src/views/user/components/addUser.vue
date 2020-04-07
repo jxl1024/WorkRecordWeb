@@ -10,13 +10,20 @@
     :okButtonProps="okBtnSubmit"
     :destroyOnClose="true"
     >
-  <a-form :form="form"  :label-col="{ span:6 }" :wrapper-col="{ span:18 }" @submit="handleSubmit">
+    <p>{{ recode?recode.userID:"121" }}</p>
+  <a-form
+    :form="form"
+    :label-col="{ span:6 }"
+    :wrapper-col="{ span:18 }"
+    @submit="handleSubmit"
+    :model="recode"
+   >
     <a-form-item label="userID" class="add-user-item">
       <a-input
         v-decorator="['userID',
         {
           rules: [{ required: true, message: 'Please input your note!' }],
-          initialValue:''
+          initValue:`${recode}?'test':''`
          }
         ]"
       />
@@ -94,6 +101,7 @@
       </a-button>
     </a-form-item> -->
   </a-form>
+   <!-- <p>recod: {{ recode.userID }}</p> -->
   </a-modal>
  </div>
 </template>
@@ -113,23 +121,25 @@ export default {
     }
   },
   methods: {
-    handleOk () {
-      this.$emit('handleOk', this.name)
+    handleOk (params) {
+      this.$store.commit('user/setRecord', null)
+      this.$emit('handleOk', params)
     },
     handleSubmit (e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log(values);
+          // console.log(values);
           const params = values;
-          this.$store.dispatch('user/addUser', params)
+          this.$store.dispatch('user/addUser', params);
+          this.handleOk(params)
         }
       });
     }
   },
   computed: {
     ...mapState({
-      recode: state => state.recode
+      recode: state => state.user.recode
     })
   }
 }
