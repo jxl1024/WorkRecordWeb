@@ -39,10 +39,10 @@ const actions = {
     })
   },
   addUser: ({ dispatch, commit }, params) => {
-    commit('getData', null)
+    // commit('getData', null)
     POST(url, params).then((res) => {
       console.log(res)
-      commit('getData', null)
+      // commit('getData', null)
     })
   }
 }
