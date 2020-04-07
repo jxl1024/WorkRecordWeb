@@ -10,18 +10,23 @@
       </div>
       <a-button type="default" @click="toogleAddModal">添加用户</a-button>
     </div>
-    <a-table
-    class="user-list"
-    :columns="columns"
-    :dataSource="userlist"
-    rowKey="userID"
+    <a-spin
+    :spinning="loading"
     >
-    <div class="user-item" slot="userItem">
-      <a><a-icon type="form"></a-icon>修改</a>
-      <a><a-icon type="slack"></a-icon>删除</a>
-    </div>
-    </a-table>
-
+      <a-table
+          class="user-list"
+          :columns="columns"
+          :dataSource="userlist"
+          rowKey="userID"
+          >
+          <template slot="action" slot-scope="text, record">
+              <div class="user-item" slot="userItem">
+                    <a @click="onEdit(record)" ><a-icon type="form"></a-icon>修改</a>
+                    <a @click="onEdit(record, true)"><a-icon type="slack"></a-icon>删除</a>
+                </div>
+          </template>
+        </a-table>
+    </a-spin>
     <!--添加用户弹框 -->
     <AddUser
       :visible="visible"
@@ -36,47 +41,47 @@ import { mapState } from 'vuex'
 const columns = [
   {
     title: 'userID',
-    dataIndex: 'userID',
-    width: '10%',
-    ellipsis: true
+    dataIndex: 'userID'
+    // width: '10%'
+    // ellipsis: 'true'
   },
   {
     title: '用户账号',
-    dataIndex: 'account',
-    width: '15%'
+    dataIndex: 'account'
+    // width: '15%'
   },
   {
     title: '用户名',
-    dataIndex: 'userName',
-    width: '10%'
+    dataIndex: 'userName'
+    // width: '10%'
   },
   {
     title: '用户角色',
-    dataIndex: 'roleID',
-    width: '10%'
+    dataIndex: 'roleID'
+    // width: '10%'
   },
   {
     title: '部门ID',
-    dataIndex: 'departmentID',
-    width: '10%'
+    dataIndex: 'departmentID'
+    // width: '10%'
   },
   {
     title: '创建时间',
-    dataIndex: 'createdTime',
-    width: '10%'
+    dataIndex: 'createdTime'
+    // width: '10%'
 
   },
   {
     title: '用户密码',
     dataIndex: 'password',
-    width: '15%',
-    ellipsis: true
+    width: '15%'
+    // ellipsis: true
   },
   {
     title: '操作',
     dataIndex: 'operation',
-    scopedSlots: { customRender: 'userItem' },
-    width: '15%'
+    scopedSlots: { customRender: 'action' }
+    // width: '15%'
   }
   // {
   //   title: 'isDel',
@@ -112,20 +117,30 @@ export default {
   },
   mounted () {
   // 获取列表数据
-    this.$store.dispatch('user/getUserList', this.pagenation)
+    this.$store.commit('user/setLoading', true)
+    this.$store.dispatch('user/getUserList', this.pagenation).then(() => {
+      this.$store.commit('user/setLoading', false)
+    })
   },
   methods: {
     toogleAddModal () {
       this.visible = !this.visible
     },
     handleAddUser (msg) {
-      console.log(msg);
+      // console.log(msg);
       this.toogleAddModal()
+    },
+    onEdit (record, f) {
+      // if(f){
+      // }else{
+      // }
+      this.toogleAddModal(record)
     }
   },
   computed: {
     ...mapState({
-      userlist: state => state.user.userlist
+      userlist: state => state.user.userlist,
+      loading: state => state.user.load
     })
   }
 }
@@ -136,5 +151,11 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    a{
+      margin:0 5px;
+    }
+}
+.ant-table-tbody > tr > td{
+  padding:10px !important;
 }
 </style>
