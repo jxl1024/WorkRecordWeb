@@ -24,13 +24,11 @@ const actions = {
     })
   },
   add: ({ dispatch, commit }, params) => {
-    console.log('add')
     POST(url, params).then((res) => {
       console.log(res)
     })
   },
   put: ({ dispatch, commit }, params) => {
-    console.log('put')
     PUT(url, params).then((res) => {
       console.log(res)
     })

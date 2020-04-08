@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-modal
-    title="Modal"
+    :title="getTitle"
     :visible="visible"
     okText="确定"
     cancelText="取消"
@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-  props: ['visible', 'item'],
+  props: ['visible', 'item', 'title'],
   data () {
     return {
       params: {
@@ -45,6 +45,13 @@ export default {
     }
   },
   computed: {
+    getTitle () {
+      if (this.title === 1) {
+        return '添加部门'
+      } else {
+        return '修改部门'
+      }
+    }
   },
   beforeUpdate () {
     this.params = this.item;
@@ -63,6 +70,7 @@ export default {
     },
     handleSubmit () {
       const param = this.params;
+      const action = this.title
       // 用于判断是添加还是修改触发不同的action
       for (const key in param) {
         if (!param[key]) {
@@ -70,10 +78,10 @@ export default {
           return;
         };
       }
-      if (departmentID) {
-        this.$store.dispatch('department/put', param)
-      } else {
+      if (action === 1) {
         this.$store.dispatch('department/add', param)
+      } else {
+        this.$store.dispatch('department/put', param)
       }
       this.cancel();
     }

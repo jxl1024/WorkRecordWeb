@@ -37,6 +37,7 @@
   <Department
     :visible="visible"
     :item="item"
+    :title="title"
     @cancel="toogleVisible"
   />
 </a-spin>
@@ -70,6 +71,7 @@ export default {
     return {
       columns,
       visible: false,
+      title: 1,
       item: {
         departmentCode: '',
         departmentID: '',
@@ -107,9 +109,11 @@ export default {
       };
     },
     addDepart () {
+      this.title = 1;
       this.toogleVisible();
     },
     onEdit (record) {
+      this.title = 2;
       this.toogleVisible();
       const recode = Object.assign({}, record)
       this.item = recode;
