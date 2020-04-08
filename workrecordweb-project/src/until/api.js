@@ -5,3 +5,7 @@ export const UserApi = {
   list: `${apiHost}/user`,
   add: `${apiHost}/user`
 }
+
+export const DepartmentApi = {
+  list: `${apiHost}/department`
+}

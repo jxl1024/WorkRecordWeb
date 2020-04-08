@@ -1,35 +1,42 @@
 // import axios from 'axios'
-import { UserApi } from './../until/api';
-import { GET } from './../until/axios/request';
+import { DepartmentApi } from './../until/api';
+import { GET, POST, PUT, DELETE } from './../until/axios/request';
+const url = DepartmentApi.list
 const state = {
-  testData: [],
-  loading: false
+  list: [],
+  load: false
 }
 const mutations = {
   getData (state, res) {
-    state.testData = res;
+    state.list = res;
   },
   load (state, f) {
-    state.loading = f
+    state.load = f
   }
 }
 const actions = {
-  getLoad: ({ commit }, f) => {
+  setLoad: ({ commit }, f) => {
     commit('load', f)
   },
-  testData: ({ dispatch, commit }) => {
-    // dispatch('getLoad', true)
-    const url = UserApi.list
-    // axios.get(url).then((res) => {
-    //   commit('getData', res);
-    // }).then((res) => {
-    //   dispatch('getLoad', false)
-    // })
-    const params = {
-      pageIndex: 1,
-      pageSize: 10
-    }
+  list: ({ dispatch, commit }, params) => {
     GET(url, params).then(res => {
+      commit('getData', res.data)
+    })
+  },
+  add: ({ dispatch, commit }, params) => {
+    console.log('add')
+    POST(url, params).then((res) => {
+      console.log(res)
+    })
+  },
+  put: ({ dispatch, commit }, params) => {
+    console.log('put')
+    PUT(url, params).then((res) => {
+      console.log(res)
+    })
+  },
+  delete: ({ dispatch, commit }, params) => {
+    DELETE(url, params).then((res) => {
       console.log(res)
     })
   }

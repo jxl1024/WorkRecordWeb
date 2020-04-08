@@ -1,7 +1,7 @@
 <template>
 <a-spin
   size="large"
-  :spinning="loading"
+  :spinning="load"
 >
 <div class="page-department">
     <div class="public-page-title">部门管理</div>
@@ -12,76 +12,115 @@
           />
         <a-button type="primary">查询</a-button>
       </div>
-      <a-button type="default" >添加部门</a-button>
+      <a-button
+        type="default"
+        @click="addDepart"
+      >添加部门</a-button>
     </div>
-    <p>{{testData}}</p>
     <a-table
     :columns="columns"
-    :dataSource="data"
+    :dataSource="list"
+     rowKey="departmentID"
     >
+    <template slot="action" slot-scope="text, record">
+          <a @click="onEdit(record)" class="department-action"><a-icon type="form"></a-icon>修改</a>
+          <a-popconfirm
+            v-if="list.length"
+            title="Sure to delete?"
+            @confirm="() => onDelete(record)"
+            >
+                <a href="javascript:;"><a-icon type="slack"></a-icon>删除</a>
+            </a-popconfirm>
+    </template>
     </a-table>
 </div>
+  <Department
+    :visible="visible"
+    :item="item"
+    @cancel="toogleVisible"
+  />
 </a-spin>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Department from './components/Department'
 const columns = [
   {
-    title: 'name',
-    dataIndex: 'name',
-    width: '25%',
-    scopedSlots: { customRender: 'name' }
+    title: 'departmentID',
+    dataIndex: 'departmentID'
   },
   {
-    title: 'age',
-    dataIndex: 'age',
-    width: '15%',
-    scopedSlots: { customRender: 'age' }
+    title: 'departmentCode',
+    dataIndex: 'departmentCode'
   },
   {
-    title: 'address',
-    dataIndex: 'address',
-    width: '40%',
-    scopedSlots: { customRender: 'address' }
+    title: '部门名称',
+    dataIndex: 'departmentName'
   },
   {
-    title: 'operation',
-    dataIndex: 'operation',
-    scopedSlots: { customRender: 'operation' }
+    title: '操作',
+    dataIndex: '操作',
+    scopedSlots: { customRender: 'action' }
   }
 ];
 
-const data = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i.toString(),
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`
-  });
-}
 export default {
   data () {
     return {
-      data,
-      columns
+      columns,
+      visible: false,
+      item: {
+        departmentCode: '',
+        departmentID: '',
+        departmentName: ''
+      },
+      pagenation: {
+        pageIndex: 1,
+        pageSize: 10
+      }
     }
   },
+  components: {
+    Department
+  },
   mounted () {
-    this.loading = true;
     //  触发action
-    this.$store.dispatch('department/testData')
+    this.$store.commit('department/load', true);
+    this.$store.dispatch('department/list', this.pagenation).then(() => {
+      this.$store.commit('department/load', false);
+    })
   },
   computed: {
     ...mapState({
-      testData: state => state.department.testData,
-      loading: state => state.department.loading
+      load: state => state.department.load,
+      list: state => state.department.list
     })
+  },
+  methods: {
+    toogleVisible () {
+      this.visible = !this.visible;
+      this.item = {
+        departmentCode: '',
+        departmentID: '',
+        departmentName: ''
+      };
+    },
+    addDepart () {
+      this.toogleVisible();
+    },
+    onEdit (record) {
+      this.toogleVisible();
+      const recode = Object.assign({}, record)
+      this.item = recode;
+    }
   }
 
 }
 </script>
 
 <style lang="less">
+.department-action{
+  margin-right:10px;
+}
 </style>
