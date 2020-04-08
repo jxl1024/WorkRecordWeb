@@ -1,5 +1,6 @@
 import { UserApi } from './../until/api'
-import { GET, POST } from './../until/axios/request.js'
+import { GET, POST, PUT, DELETE } from './../until/axios/request.js'
+import axios from 'axios'
 const url = UserApi.list;
 
 const state = {
@@ -38,11 +39,22 @@ const actions = {
       })
     })
   },
-  addUser: ({ dispatch, commit }, params) => {
-    // commit('getData', null)
+  add: ({ dispatch, commit }, params) => {
     POST(url, params).then((res) => {
       console.log(res)
-      // commit('getData', null)
+    })
+  },
+  put: ({ dispatch, commit }, params) => {
+    PUT(url, params).then((res) => {
+      console.log(res)
+    })
+  },
+  delete: ({ dispatch, commit }, params) => {
+    axios.delete(url, { data: params })
+      .then((res) => {
+      })
+    DELETE(url, params).then((res) => {
+
     })
   }
 }

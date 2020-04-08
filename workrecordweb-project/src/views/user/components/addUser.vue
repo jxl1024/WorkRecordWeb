@@ -10,7 +10,6 @@
     :okButtonProps="okBtnSubmit"
     :destroyOnClose="true"
     >
-    <p>{{ recode?recode.userID:"121" }}</p>
   <a-form
     :form="form"
     :label-col="{ span:6 }"
@@ -23,59 +22,109 @@
         v-decorator="['userID',
         {
           rules: [{ required: true, message: 'Please input your note!' }],
-          initValue:`${recode}?'test':''`
+          initialValue:`${recordItem?recordItem.userID:recordItem}`
          }
         ]"
       />
     </a-form-item>
       <a-form-item label="account">
       <a-input
-        v-decorator="['account', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['account',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.account:recordItem}`
+         }
+        ]"
       />
     </a-form-item>
     <a-form-item label="password">
       <a-input
-        v-decorator="['password', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['password',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.password:recordItem}`
+         }
+        ]"
       />
     </a-form-item>
       <a-form-item label="userName">
       <a-input
-        v-decorator="['userName', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['userName',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.userName:recordItem}`
+         }
+        ]"
       />
     </a-form-item>
     <a-form-item label="roleID">
       <a-input
-        v-decorator="['roleID', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['roleID',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.roleID:recordItem}`
+        }
+        ]"
       />
     </a-form-item>
       <a-form-item label="departmentID">
       <a-input
-        v-decorator="['departmentID', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['departmentID',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.departmentID:recordItem}`
+        }
+        ]"
       />
     </a-form-item>
     <a-form-item label="isDel">
       <a-input
-        v-decorator="['isDel', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['isDel',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.isDel:recordItem}`
+        }
+       ]"
       />
     </a-form-item>
       <a-form-item label="createdUserId">
       <a-input
-        v-decorator="['createdUserId', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['createdUserId',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.createdUserId:recordItem}`
+        }
+        ]"
       />
     </a-form-item>
         <a-form-item label="createdTime">
       <a-input
-        v-decorator="['createdTime', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['createdTime',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.createdTime:recordItem}`
+          }
+        ]"
       />
     </a-form-item>
       <a-form-item label="updatedUserId">
       <a-input
-        v-decorator="['updatedUserId', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['updatedUserId',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.updatedUserId:recordItem}`
+          }
+        ]"
       />
     </a-form-item>
       <a-form-item label="updatedTime">
       <a-input
-        v-decorator="['updatedTime', { rules: [{ required: true, message: 'Please input your note!' }] }]"
+        v-decorator="['updatedTime',
+        {
+          rules: [{ required: true, message: 'Please input your note!' }],
+          initialValue:`${recordItem?recordItem.updatedTime:recordItem}`
+          }
+        ]"
       />
     </a-form-item>
     <!-- <a-form-item label="Gender">
@@ -109,35 +158,47 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  props: ['visible'],
+  props: ['visible', 'record'],
   data () {
     return {
       name: 'test',
       formLayout: 'horizontal',
-      form: this.$form.createForm(this, { name: 'coordinated' }),
+      // form: this.$form.createForm(this, { name: 'coordinated' }),
       okBtnSubmit: {
         htmlType: 'submit'
       }
     }
   },
+  beforeCreate () {
+    this.form = this.$form.createForm(this, { name: 'add_user' });
+  },
   methods: {
     handleOk (params) {
-      this.$store.commit('user/setRecord', null)
-      this.$emit('handleOk', params)
+      this.$emit('handleOk')
     },
     handleSubmit (e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          // console.log(values);
           const params = values;
-          this.$store.dispatch('user/addUser', params);
+          if (this.record) {
+            this.$store.dispatch('user/add', params);
+          } else {
+            this.$store.dispatch('user/put', params);
+          }
           this.handleOk(params)
         }
       });
     }
   },
   computed: {
+    recordItem () {
+      if (this.record) {
+        return this.record
+      } else {
+        return ''
+      }
+    },
     ...mapState({
       recode: state => state.user.recode
     })

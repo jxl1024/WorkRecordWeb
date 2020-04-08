@@ -22,7 +22,13 @@
           <template slot="action" slot-scope="text, record">
               <div class="user-item" slot="userItem">
                     <a @click="onEdit(record)" ><a-icon type="form"></a-icon>修改</a>
-                    <a @click="onDelete(record)"><a-icon type="slack"></a-icon>删除</a>
+                    <a-popconfirm
+                      v-if="userlist.length"
+                      title="Sure to delete?"
+                      @confirm="() => onDelete(record)"
+                    >
+                        <a href="javascript:;"><a-icon type="slack"></a-icon>删除</a>
+                    </a-popconfirm>
                 </div>
           </template>
         </a-table>
@@ -30,6 +36,7 @@
     <!--添加用户弹框 -->
     <AddUser
       :visible="visible"
+      :record="record"
       @handleOk="handleAddUser"
      />
   </div>
@@ -106,6 +113,7 @@ export default {
       // data,
       columns,
       visible: false,
+      record: null,
       pagenation: {
         pageIndex: 1,
         pageSize: 10
@@ -124,16 +132,22 @@ export default {
   },
   methods: {
     toogleAddModal (record) {
+      const { userID } = record;
       this.visible = !this.visible;
-      if (record) { this.$store.commit('user/setRecord', record) }
+      if (userID) this.record = record
+      if (!userID) this.record = null
     },
     handleAddUser (params) {
-      this.toogleAddModal()
+      this.visible = !this.visible;
     },
     onEdit (record) {
       this.toogleAddModal(record)
     },
     onDelete (record) {
+      const { userID } = record;
+      const params = {};
+      params.id = userID;
+      this.$store.dispatch('user/delete', params)
     }
   },
   computed: {
