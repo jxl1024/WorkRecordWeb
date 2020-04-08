@@ -1,7 +1,7 @@
 <template>
  <div>
   <a-modal
-    title="添加用户"
+    :title="title"
     :visible="visible"
     :maskClosable="false"
     :closeable="false"
@@ -158,7 +158,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  props: ['visible', 'record'],
+  props: ['visible', 'record', 'title'],
   data () {
     return {
       name: 'test',

@@ -37,6 +37,7 @@
     <AddUser
       :visible="visible"
       :record="record"
+      :title="title"
       @handleOk="handleAddUser"
      />
   </div>
@@ -114,6 +115,7 @@ export default {
       columns,
       visible: false,
       record: null,
+      title: '添加用户',
       pagenation: {
         pageIndex: 1,
         pageSize: 10
@@ -134,8 +136,14 @@ export default {
     toogleAddModal (record) {
       const { userID } = record;
       this.visible = !this.visible;
-      if (userID) this.record = record
-      if (!userID) this.record = null
+      if (userID) {
+        this.record = record;
+        this.title = '修改用户'
+      }
+      if (!userID) {
+        this.record = null;
+        this.title = '添加用户'
+      }
     },
     handleAddUser (params) {
       this.visible = !this.visible;
