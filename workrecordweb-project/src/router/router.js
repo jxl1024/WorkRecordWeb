@@ -40,6 +40,15 @@ export default [
     }
   },
   {
+    path: '/role',
+    name: '角色',
+    type: 'audit',
+    component: () => import('../views/role'),
+    meta: {
+      keepAlive: true
+    }
+  },
+  {
     path: '/Page3',
     name: 'Page3',
     type: 'twitter',

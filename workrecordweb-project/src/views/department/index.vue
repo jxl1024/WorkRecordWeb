@@ -117,6 +117,9 @@ export default {
       this.toogleVisible();
       const recode = Object.assign({}, record)
       this.item = recode;
+    },
+    onDelete (record) {
+      console.log('121')
     }
   }
 
