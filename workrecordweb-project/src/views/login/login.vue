@@ -47,6 +47,9 @@
 </template>
 
 <script>
+// 导入axios
+import { POST } from '../../until/axios';
+
 export default {
   // beforeCreate () {
   //    this.form = this.$form.createForm(this, { name: 'normal_login' });
@@ -74,11 +77,25 @@ export default {
   },
   methods: {
     handleSubmit (e) {
+      console.log(e);
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values);
-          this.$router.push({ path: '/Home' })
+          alert('调用接口');
+          const jwtAPI = this.GLOBAL.jwtServiceAPI
+          alert(jwtAPI)
+          // 调用Jwt验证
+          POST('http://localhost:5000/api/login',
+            { Account: values.userName, Password: values.password }).then(res => {
+            if (res.data.code === 0) {
+              // 跳转到主页面
+              this.$router.push({ path: '/Home' })
+            }
+            console.log(res)
+            console.log('data:' + res.data.code);
+            // console.log('Received values of form: ', values);
+            //
+          })
         }
       });
     }

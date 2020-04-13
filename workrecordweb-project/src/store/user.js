@@ -1,5 +1,5 @@
 import { UserApi } from './../until/api'
-import { GET, POST, PUT, DELETE } from './../until/axios/request.js'
+import { GET, POST, PUT, DELETE } from './../until/axios'
 import axios from 'axios'
 const url = UserApi.list;
 

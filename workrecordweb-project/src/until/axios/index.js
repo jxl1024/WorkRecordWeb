@@ -40,17 +40,29 @@ export function GET (url, params) {
  * @param {String} url [请求url地址]
  * @param {Object} params [请求时携带参数]
  */
-export function POST (url, params) {
-  const config = {
-    url,
-    method: Request.post,
-    data: params,
-    headers: {
-      Accept: MIMETYPE.json,
-      'Content-Type': MIMETYPE.json
-    }
-  }
-  return Request(config)
+// export function POST (url, params) {
+//   const config = {
+//     url,
+//     method: Request.post,
+//     data: params,
+//     headers: {
+//       Accept: MIMETYPE.json,
+//       'Content-Type': MIMETYPE.json
+//     }
+//   }
+//   return Request(config)
+// }
+
+export function POST (url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.post(url, data)
+      .then(response => {
+        // alert(response.data)
+        resolve(response);
+      }, err => {
+        reject(err);
+      })
+  });
 }
 
 /**
@@ -93,14 +105,24 @@ export function DELETE (url, params) {
  * @param {Object} config [请求的配置项]
  */
 function Request (config) {
+  alert('Request')
   const defaultConfig = {
     timeout: defaultTimeout,
     withCredentials: false,
     ...config
   }
   return new Promise((resolve, reject) => {
+    alert('pro')
     axios.request(defaultConfig).then((response) => {
-      resolve(response)
+      alert('response')
+      console.log(response)
+      console.log('data1:' + response.data)
+      if (response) {
+        resolve(response.data)
+      }
+    }, err => {
+      alert(err)
+      reject(err);
     })
   })
 }

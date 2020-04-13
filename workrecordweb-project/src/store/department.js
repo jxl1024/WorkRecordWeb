@@ -1,6 +1,6 @@
 // import axios from 'axios'
 import { DepartmentApi } from './../until/api';
-import { GET, POST, PUT, DELETE } from './../until/axios/request';
+import { GET, POST, PUT, DELETE } from './../until/axios';
 const url = DepartmentApi.list
 const state = {
   list: [],
