@@ -119,7 +119,7 @@ export default {
       this.item = recode;
     },
     onDelete (record) {
-      console.log('121')
+      // console.log('121')
     }
   }
 

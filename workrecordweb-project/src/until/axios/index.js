@@ -115,8 +115,8 @@ function Request (config) {
     alert('pro')
     axios.request(defaultConfig).then((response) => {
       alert('response')
-      console.log(response)
-      console.log('data1:' + response.data)
+      // console.log(response)
+      // console.log('data1:' + response.data)
       if (response) {
         resolve(response.data)
       }

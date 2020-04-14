@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     handleSubmit (e) {
-      console.log(e);
+      // console.log(e);
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
@@ -85,7 +85,7 @@ export default {
           const jwtAPI = this.GLOBAL.jwtServiceAPI
           alert(jwtAPI)
           // 调用Jwt验证
-          POST('http://localhost:5000/api/login',
+          POST(jwtAPI,
             { Account: values.userName, Password: values.password }).then(res => {
             if (res.data.code === 0) {
               // 跳转到主页面

@@ -64,13 +64,13 @@ export default {
   },
   methods: {
     addRole () {
-      console.log('121')
+      // console.log('121')
     },
     onEdit (item) {
-      console.log(item)
+      // console.log(item)
     },
     onDelete (item) {
-      console.log(item)
+      // console.log(item)
     }
   }
 }

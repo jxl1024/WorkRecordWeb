@@ -41,12 +41,12 @@ const actions = {
   },
   add: ({ dispatch, commit }, params) => {
     POST(url, params).then((res) => {
-      console.log(res)
+      // console.log(res)
     })
   },
   put: ({ dispatch, commit }, params) => {
     PUT(url, params).then((res) => {
-      console.log(res)
+      // console.log(res)
     })
   },
   delete: ({ dispatch, commit }, params) => {
