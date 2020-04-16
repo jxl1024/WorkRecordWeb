@@ -10,7 +10,7 @@
     <a-dropdown :style="{paddingRight:'30px'}">
       <a class="ant-dropdown-link" @click="e => e.preventDefault()"><span class="user">admin</span><a-avatar style="backgroundColor:#87d068" icon="user"/></a>
       <a-menu slot="overlay">
-      <a-menu-item>
+      <a-menu-item @click="layout">
         <a href="javascript:;">退出登录</a>
       </a-menu-item>
     </a-menu>
@@ -22,7 +22,14 @@
 
 <script>
 export default {
-  props: ['collapsed']
+  props: ['collapsed'],
+  methods: {
+    layout () {
+      this.$router.push({
+        path: '/'
+      })
+    }
+  }
 }
 
 </script>

@@ -6,7 +6,7 @@ export default {
   data () {
     return {
       son1Message: {
-        isShow: true,
+        isShow: false,
         info: '我是test'
       }
     }
