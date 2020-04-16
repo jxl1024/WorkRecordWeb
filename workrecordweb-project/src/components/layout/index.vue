@@ -34,7 +34,6 @@ import Footer from './footer/index'
 import Header from './header/index'
 export default {
   name: 'Home',
-  props: ['route'],
   components: {
     Sider,
     Footer,
@@ -43,8 +42,12 @@ export default {
   data () {
     return {
       collapsed: false,
-      router: router
+      router: router,
+      route: this.$route.path
     };
+  },
+  created () {
+    console.log(this.$route)
   },
   methods: {
     toggleCollapsed () {

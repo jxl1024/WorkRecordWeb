@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueBus from 'vue-bus'
 // 引入
 import Antd from 'ant-design-vue'
 // 引入样式
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 Vue.prototype.GLOBAL = globalApi
 // 全局注册
 Vue.use(Antd)
+Vue.use(VueBus)
 
 new Vue({
   router,

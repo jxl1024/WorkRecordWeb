@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <Layout v-if="$route.meta.keepAlive" :route="$route.path"/>
+   <Layout v-if="$route.meta.keepAlive" />
     <!-- 登录页面 -->
     <router-view v-else ></router-view>
   </div>

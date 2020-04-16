@@ -82,8 +82,9 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           alert('调用接口');
-          const jwtAPI = this.GLOBAL.jwtServiceAPI
-          alert(jwtAPI)
+          const jwtAPI = this.GLOBAL.jwtServiceAPI;
+          this.$router.push({ path: '/Home' })
+          // alert(jwtAPI)
           // 调用Jwt验证
           POST(jwtAPI,
             { Account: values.userName, Password: values.password }).then(res => {
